@@ -4,7 +4,7 @@ import java.util.*;
 
 public class    ItemCategories
 {
-    // categoryId → list of lowercase match patterns
+    // categoryId → list of lowercase match patterns > expand names and categories - common items for xyz (&xz, yx..)
     public static final Map<Integer, List<String>> CATEGORY_PATTERNS = new HashMap<>();
 
     static
