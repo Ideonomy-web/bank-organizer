@@ -231,6 +231,8 @@ public class BankOrganizerPlugin extends Plugin
 
 
     /*
+    Exclusions:
+    (A).
     Only run exclusion check for Category 2
     if (catId == 2)
     {
@@ -251,6 +253,7 @@ public class BankOrganizerPlugin extends Plugin
     }
     */
                 /*
+                (B).
                 Pattern-based exclusion
                 boolean skip = false;
                 for (String exclusionPattern : exclusions)
