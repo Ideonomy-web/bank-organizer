@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import net.runelite.api.Client;
 import net.runelite.api.Point;
 import net.runelite.api.widgets.Widget;
-import net.runelite.api.widgets.WidgetInfo;
+import net.runelite.api.widgets.ComponentID;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;
 import net.runelite.client.ui.overlay.OverlayPosition;
@@ -57,7 +57,7 @@ public class BankOrganizerOverlay extends Overlay
             return null;
         }
 
-        Widget bankContainer = client.getWidget(WidgetInfo.BANK_ITEM_CONTAINER);
+        Widget bankContainer = client.getWidget(ComponentID.BANK_ITEM_CONTAINER);
         if (bankContainer == null || bankContainer.isHidden())
         {
             return null;
