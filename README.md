@@ -15,7 +15,7 @@ The <strong>Bank Organizer & Clean‑up</strong> plugin helps you keep your Rune
 <h2>Important Notes</h2>
 <ul>
   <li>Certain niche items required for diary or clue steps (e.g., <em>Bullroarer</em>, <em>Ice gloves</em>) will <strong>not</strong> be marked for removal.</li>
-  <li>Some items (e.g., <em>HAM robes</em>) are marked as discardable but may still be needed for specific clues — review before deleting.</li>
+  <li>Some items (e.g., <em>HAM robes</em>) are marked as discardable but may still be needed for specific clues — review before discarding.</li>
 
 <li>Some categories are toggled off by default - it is not recommended to turn every preset category on at once to avoid clutter and confusion.</li>
 </ul>
