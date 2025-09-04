@@ -41,23 +41,6 @@ public class BankOrganizerPlugin extends Plugin
     @Inject
     private OverlayManager overlayManager;
 
-    // Quest Map Redundant w/SpecialCase - no fallback needed
-    //private static final Map<Integer, Quest> QUEST_ITEM_MAP = Map.ofEntries(
-      //      Map.entry(ItemID.ENCHANTED_KEY, Quest.MAKING_HISTORY),
-        //    Map.entry(ItemID.GLARIALS_PEBBLE, Quest.WATERFALL_QUEST),
-          //  Map.entry(ItemID.SEAL_OF_PASSAGE, Quest.THE_FREMENNIK_ISLES),
-           // Map.entry(ItemID.DRAMEN_BRANCH, Quest.LOST_CITY),
-     //       Map.entry(ItemID.DRAMEN_STAFF, Quest.LOST_CITY),
-       //     Map.entry(ItemID.LUNAR_STAFF, Quest.LUNAR_DIPLOMACY),
-         //   Map.entry(ItemID.MAGIC_WHISTLE, Quest.LEGENDS_QUEST),
-          //  Map.entry(ItemID.GOBLIN_SYMBOL_BOOK, Quest.LAND_OF_THE_GOBLINS)
-            // ...complete list & add more quest-specific items here
-    //);
-
-    /**
-     * Special case: an item and a condition under which it should be kept.
-     * If the condition returns false, the item is considered safe to discard.
-     */
     private static class SpecialCaseRule
     {
         final int itemId;
@@ -71,7 +54,6 @@ public class BankOrganizerPlugin extends Plugin
     }
 
     private static final List<SpecialCaseRule> SPECIAL_CASES = List.of(
-            // E.g. Dramen Staff & Lunar Staff: keep if Lumbridge Elite diary NOT done
             new SpecialCaseRule(
                     ItemID.DRAMEN_STAFF,
                     c -> c.getVarbitValue(Varbits.DIARY_LUMBRIDGE_ELITE) != 1
@@ -716,47 +698,4 @@ public class BankOrganizerPlugin extends Plugin
         return configManager.getConfig(BankOrganizerConfig.class);
     }
 }
-
-
-
-
-
-    /*
-    Exclusions:
-    (A).
-    Only run exclusion check for Category 2
-    if (catId == 2)
-    {
-        List<String> exclusions = getExclusionsForCategory(catId);
-        if (exclusions.contains(name))
-        {
-            continue; // skip this category for this item
-        }
-    }
-
-    for (String pattern : entry.getValue())
-    {
-        if (name.contains(pattern))
-        {
-            matchedColors.add(getColorForCategory(catId));
-            break;
-        }
-    }
-    */
-                /*
-                (B).
-                Pattern-based exclusion
-                boolean skip = false;
-                for (String exclusionPattern : exclusions)
-                {if (!exclusionPattern.isEmpty() && name.contains(exclusionPattern))
-                    {
-                        skip = true;
-                        break;
-                    }
-                }
-                if (skip)
-                {
-                    continue; // skip this category for this item
-                }
-                */
 
