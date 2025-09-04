@@ -201,7 +201,7 @@ public interface BankOrganizerConfig extends Config
             name = "Excluded items",
             description = "Comma-separated list of item names to exclude from category"
     )
-    default String excludeCat7() { return "potato seed, battleaxe, wahammer, thrownaxe,potato cactus, potion(1), potion(2), potion(3), potion(4), potion (unf), dragon warhammer, bucket of sand, metal feather, tuna potato, baked potato"; }
+    default String excludeCat7() { return "infernal cape, rune knife, nail beast nails, potato seed, battleaxe, wahammer, thrownaxe,potato cactus, potion, dragon warhammer, bucket of sand, metal feather, tuna potato, baked potato, dragon knife"; }
 
     @ConfigItem(
             position = 25, // make sure this doesn't clash with other positions

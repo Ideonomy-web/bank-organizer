@@ -13,8 +13,6 @@ public class CategoryParser
         {
             return rules;
         }
-
-        // Split categories by comma
         String[] parts = configString.split(",");
         for (String part : parts)
         {

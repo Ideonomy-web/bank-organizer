@@ -514,9 +514,96 @@ public class BankOrganizerPlugin extends Plugin
             new SpecialCaseRule(
                     ItemID.ARMADYL_PENDANT,
                     c -> false
+            ),
+            new SpecialCaseRule(
+                    ItemID.POLISHED_BUTTONS,
+                    c -> Quest.ANIMAL_MAGNETISM.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.SHEEP_FEED,
+                    c -> Quest.SHEEP_HERDER.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.MEDICAL_GOWN,
+                    c -> Quest.BIOHAZARD.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.PIGEON_CAGE,
+                    c -> Quest.BIOHAZARD.getState(c) !=QuestState.FINISHED
+                    && Quest.ONE_SMALL_FAVOUR.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.PIGEON_CAGE_425,
+                    c -> Quest.BIOHAZARD.getState(c) !=QuestState.FINISHED
+                    && Quest.ONE_SMALL_FAVOUR.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.RING_OF_CHAROSA,
+                    c -> Quest.GARDEN_OF_TRANQUILLITY.getState(c) !=QuestState.FINISHED
+                    && Quest.THE_GREAT_BRAIN_ROBBERY.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.WOLFBANE,
+                    c -> c.getVarbitValue(Varbits.DIARY_MORYTANIA_EASY) !=1
+            ),
+            new SpecialCaseRule(
+                    ItemID.MITHRIL_SEEDS,
+                    c -> false
+            ),
+            new SpecialCaseRule(
+                    ItemID.JUG_OF_VINEGAR,
+                    c ->Quest.RAG_AND_BONE_MAN_II.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.SILVER_NECKLACE,
+                    c -> false
+            ),
+            new SpecialCaseRule(
+                    ItemID.BOOK_OF_PORTRAITURE,
+                    c -> Quest.ZOGRE_FLESH_EATERS.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.CATSPEAK_AMULETE,
+                    c -> Quest.RATCATCHERS.getState(c) !=QuestState.FINISHED
+                    && Quest.A_TAIL_OF_TWO_CATS.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.METAL_FEATHER,
+                    c -> Quest.EAGLES_PEAK.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.TROLLWEISS,
+                    c -> Quest.TROLL_ROMANCE.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.FREMENNIK_SHIELD,
+                    c -> false
+            ),
+            new SpecialCaseRule(
+                    ItemID.FREMENNIK_HELM,
+                    c -> false
+            ),
+            new SpecialCaseRule(
+                    ItemID.FREMENNIK_BLADE,
+                    c -> false
+            ),
+            new SpecialCaseRule(
+                    ItemID.LYRE,
+                    c -> false
+            ),
+            new SpecialCaseRule(
+                    ItemID.ROD_MOULD,
+                    c -> Quest.IN_AID_OF_THE_MYREQUE.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.SILVTHRILL_ROD,
+                    c -> Quest.IN_AID_OF_THE_MYREQUE.getState(c) !=QuestState.FINISHED
             )
     );
         // Add more special cases
+    //.getState(c) !=QuestState.FINISHED
+    //c -> false
+    //c -> c.getVarbitValue(Varbits.
             // --- Example: Diary reward ---
             // Keep Ogre Bellows if WesProv Elite diary is NOT complete
             //      new SpecialCaseRule(ItemID.OGRE_BELLOWS,
@@ -567,7 +654,6 @@ public class BankOrganizerPlugin extends Plugin
             String name = def.getName().toLowerCase();
             List<Color> matchedColors = new ArrayList<>();
 
-            // --- Category highlighting ---
             for (Map.Entry<Integer, List<String>> entry : ItemCategories.CATEGORY_PATTERNS.entrySet())
             {
                 int catId = entry.getKey();
@@ -585,7 +671,18 @@ public class BankOrganizerPlugin extends Plugin
 
                 for (String pattern : entry.getValue())
                 {
-                    if (name.contains(pattern))
+                    boolean match;
+                    //Special logic only for cat7(tools)
+                    if (catId == 7)
+                    {
+                        match = name.matches(".*\\b" + pattern + "s?\\b.*");
+                    }
+                    else
+                    {
+                        match = name.contains(pattern);
+                    }
+
+                    if (match)
                     {
                         matchedColors.add(getColorForCategory(catId));
                         break;
@@ -605,21 +702,6 @@ public class BankOrganizerPlugin extends Plugin
                                         : config.specialItemsDiscardColor()
                         ));
             }
-
-                // 2. If no special-case rule matched, then check quest logic
-           //     if (!handled)
-             //   {
-               //     Quest quest = QUEST_ITEM_MAP.get(item.getId());
-                 //   if (quest != null)
-                   // {
-          //              QuestState state = quest.getState(client);
-            //            matchedColors.add(state == QuestState.FINISHED
-              //                  ? config.specialItemsDiscardColor()
-                //                : config.specialItemsKeepColor());
-          //          }
-            //    }
-          //  }
-
             if (!matchedColors.isEmpty())
             {
                 overlay.markItem(item.getId(), matchedColors);
