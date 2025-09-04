@@ -39,7 +39,7 @@ public class BankOrganizerPlugin extends Plugin
     @Inject
     private OverlayManager overlayManager;
 
-    // Quest items → associated quest
+    // Quest items and their associated quest
     private static final Map<Integer, Quest> QUEST_ITEM_MAP = Map.ofEntries(
             Map.entry(ItemID.ENCHANTED_KEY, Quest.MAKING_HISTORY),
             Map.entry(ItemID.GLARIALS_PEBBLE, Quest.WATERFALL_QUEST),
@@ -49,11 +49,11 @@ public class BankOrganizerPlugin extends Plugin
             Map.entry(ItemID.LUNAR_STAFF, Quest.LUNAR_DIPLOMACY),
             Map.entry(ItemID.MAGIC_WHISTLE, Quest.LEGENDS_QUEST),
             Map.entry(ItemID.GOBLIN_SYMBOL_BOOK, Quest.LAND_OF_THE_GOBLINS)
-            // ...add more quest-specific items here
+            // ...complete list & add more quest-specific items here
     );
 
     /**
-     * Special case rule: defines an item and a condition under which it should be kept.
+     * Special case: an item and a condition under which it should be kept.
      * If the condition returns false, the item is considered safe to discard.
      */
     private static class SpecialCaseRule
@@ -68,19 +68,22 @@ public class BankOrganizerPlugin extends Plugin
         }
     }
 
-            // All special-case rules in one place
-            private static final List<SpecialCaseRule> SPECIAL_CASES = List.of(
-            // Dramen Staff & Lunar Staff: keep if Lumbridge Elite diary NOT done
+    private static final List<SpecialCaseRule> SPECIAL_CASES = List.of(
+            // E.g. Dramen Staff & Lunar Staff: keep if Lumbridge Elite diary NOT done
             new SpecialCaseRule(ItemID.DRAMEN_STAFF,
                     c -> c.getVarbitValue(Varbits.DIARY_LUMBRIDGE_ELITE) != 1),
             new SpecialCaseRule(ItemID.LUNAR_STAFF,
-                    c -> c.getVarbitValue(Varbits.DIARY_LUMBRIDGE_ELITE) != 1),
-            new SpecialCaseRule(ItemID.SEAL_OF_PASSAGE,
-                    c -> c.getVarbitValue(Varbits.DIARY_FREMENNIK_ELITE) != 1)
+                    c -> c.getVarbitValue(Varbits.DIARY_LUMBRIDGE_ELITE) != 1)
+            // Add more special cases
+            // --- Example: Diary reward ---
+            // Keep Ogre Bellows if WesProv Elite diary is NOT complete
+            //      new SpecialCaseRule(ItemID.OGRE_BELLOWS,
+            //      c -> c.getVarbitValue(Varbits.DIARY_WESTERN_ELITE) != 1),
 
-                    // Diary Check new SpecialCaseRule(ItemID.SOME_ITEM, c -> c.getVarbitValue(Varbits.SOME_DIARY_VARBIT) != 1)
-                    // Quest Check new SpecialCaseRule(ItemID.ENCHANTED_KEY, c -> c.getQuest(Quest.MAKING_HISTORY).getState(c) != QuestState.FINISHED)  ||  (One or multiple quests)
-                    // Skill Check new SpecialCaseRule(ItemID.SOME_ITEM, c -> c.getRealSkillLevel(Skill.AGILITY) < 70)
+            // --- Example: Skill-check ---
+            // Keep Infernal Axe if Woodcutting level is below 99
+            //      new SpecialCaseRule(ItemID.INFERNAL_AXE,
+            //      c -> c.getRealSkillLevel(net.runelite.api.Skill.WOODCUTTING) < 99)
     );
 
     @Override
@@ -113,13 +116,25 @@ public class BankOrganizerPlugin extends Plugin
                 continue;
             }
 
-            String name = client.getItemDefinition(item.getId()).getName().toLowerCase();
+            final var def = client.getItemDefinition(item.getId());
+            if (def == null)
+            {
+                continue; // Null safety
+            }
+
+            String name = def.getName().toLowerCase();
             List<Color> matchedColors = new ArrayList<>();
 
-            // --- Original 5 categories ---
+            // --- Category highlighting ---
             for (Map.Entry<Integer, List<String>> entry : ItemCategories.CATEGORY_PATTERNS.entrySet())
             {
                 int catId = entry.getKey();
+
+                if (!isCategoryActive(catId))
+                {
+                    continue;
+                }
+
                 List<String> exclusions = getExclusionsForCategory(catId);
                 if (exclusions.contains(name))
                 {
@@ -136,38 +151,34 @@ public class BankOrganizerPlugin extends Plugin
                 }
             }
 
-            // --- Quest Items category ---
-            Quest quest = QUEST_ITEM_MAP.get(item.getId());
-            if (quest != null)
+            // --- Special Items logic (quests, diaries, skills, etc.) ---
+            if (config.specialItemsActive())
             {
-                // Check if this item has a special-case rule
-                SpecialCaseRule caseRule = SPECIAL_CASES.stream()
-                        .filter(rule -> rule.itemId == item.getId())
-                        .findFirst()
-                        .orElse(null);
+                boolean handled = false;
 
-                if (caseRule != null)
+                // 1. Refer to explicit special-case rule first (works for quest & non-quest items)
+                for (SpecialCaseRule rule : SPECIAL_CASES)
                 {
-                    if (caseRule.keepCondition.test(client))
+                    if (rule.itemId == item.getId())
                     {
-                        matchedColors.add(config.questItemsKeepColor());
-                    }
-                    else
-                    {
-                        matchedColors.add(config.questItemsDiscardColor());
+                        matchedColors.add(rule.keepCondition.test(client)
+                                ? config.specialItemsKeepColor()
+                                : config.specialItemsDiscardColor());
+                        handled = true;
+                        break;
                     }
                 }
-                else
+
+                // 2. If no special-case rule matched, then check quest logic
+                if (!handled)
                 {
-                    // Normal quest item logic
-                    QuestState state = quest.getState(client);
-                    if (state == QuestState.FINISHED)
+                    Quest quest = QUEST_ITEM_MAP.get(item.getId());
+                    if (quest != null)
                     {
-                        matchedColors.add(config.questItemsDiscardColor());
-                    }
-                    else
-                    {
-                        matchedColors.add(config.questItemsKeepColor());
+                        QuestState state = quest.getState(client);
+                        matchedColors.add(state == QuestState.FINISHED
+                                ? config.specialItemsDiscardColor()
+                                : config.specialItemsKeepColor());
                     }
                 }
             }
@@ -179,9 +190,6 @@ public class BankOrganizerPlugin extends Plugin
         }
     }
 
-    /**
-     * Reads the exclusion string for a category from config and returns a lowercase list.
-     */
     private List<String> getExclusionsForCategory(int catId)
     {
         String raw;
@@ -216,6 +224,19 @@ public class BankOrganizerPlugin extends Plugin
             case 4: return config.colorCat4();
             case 5: return config.colorCat5();
             default: return Color.WHITE;
+        }
+    }
+
+    private boolean isCategoryActive(int catId)
+    {
+        switch (catId)
+        {
+            case 1: return config.cat1Active();
+            case 2: return config.cat2Active();
+            case 3: return config.cat3Active();
+            case 4: return config.cat4Active();
+            case 5: return config.cat5Active();
+            default: return false;
         }
     }
 
