@@ -598,6 +598,54 @@ public class BankOrganizerPlugin extends Plugin
             new SpecialCaseRule(
                     ItemID.SILVTHRILL_ROD,
                     c -> Quest.IN_AID_OF_THE_MYREQUE.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.KHAZARD_HELMET,
+                    c -> false
+            ),
+            new SpecialCaseRule(
+                    ItemID.GLOUGHS_JOURNAL,
+                    c -> Quest.THE_GRAND_TREE.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.GLOUGHS_KEY,
+                    c -> Quest.THE_GRAND_TREE.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.BOOK_ON_BAXTORIAN,
+                    c -> Quest.WATERFALL_QUEST.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.LEVEL_1_CERTIFICATE,
+                    c -> Quest.RECIPE_FOR_DISASTER__ANOTHER_COOKS_QUEST.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.LEVEL_2_CERTIFICATE,
+                    c -> Quest.RECIPE_FOR_DISASTER__ANOTHER_COOKS_QUEST.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.LEVEL_3_CERTIFICATE,
+                    c -> Quest.RECIPE_FOR_DISASTER__ANOTHER_COOKS_QUEST.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.GNOME_ROYAL_SEAL,
+                    c -> Quest.MONKEY_MADNESS_I.getState(c) !=QuestState.FINISHED
+            ),
+            new  SpecialCaseRule(
+                    ItemID._10TH_SQUAD_SIGIL,
+                    c -> Quest.MONKEY_MADNESS_I.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.MAMULET_MOULD,
+                    c -> Quest.MONKEY_MADNESS_I.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.FOSSIL_ISLAND_NOTE_BOOK,
+                    c -> false
+            ),
+            new SpecialCaseRule(
+                    ItemID.FISHBOWL_AND_NET,
+                    c -> Quest.RUM_DEAL.getState(c) !=QuestState.FINISHED
             )
     );
         // Add more special cases
