@@ -9,7 +9,7 @@ The <strong>Bank Organizer & Clean‑up</strong> plugin helps you keep your Rune
   <li><strong>Pre‑set Categories:</strong> Quickly sort items into logical groups such as combat gear, skilling tools, consumables, and more.</li>
   <li><strong>Toggle & Customize:</strong> Enable or disable categories individually, set custom exclusions, and apply color‑coding for easy identification.</li>
   <li><strong>Category Pairing:</strong> Combine related categories (e.g., farming + potions + tools + food) Mix & match to suit your personal organization style.</li>
-  <li><strong>Special Clean‑up:</strong> Highlights quest items and obsolete items that may be wasting valuable bank space.</li>
+  <li><strong>Special Clean‑up:</strong> Highlights quest items and obsolete items that may be wasting valuable bank space. (This will take into consideration your current account progression through various questlines in order to verify whether an item is safe to discard or will be required in a future, uncompleted quest.  </li>
 </ul>
 
 <h2>Important Notes</h2>

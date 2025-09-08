@@ -1558,20 +1558,6 @@ public class BankOrganizerPlugin extends Plugin
             )
 
     );
-        // Add more special cases
-    //.getState(c) !=QuestState.FINISHED
-    //c -> false
-    //c -> c.getVarbitValue(Varbits.
-            // --- Example: Diary reward ---
-            // Keep Ogre Bellows if WesProv Elite diary is NOT complete
-            //      new SpecialCaseRule(ItemID.OGRE_BELLOWS,
-            //      c -> c.getVarbitValue(Varbits.DIARY_WESTERN_ELITE) != 1),
-
-            // --- Example: Skill-check ---
-            // Keep Infernal Axe if Woodcutting level is below 99
-            //      new SpecialCaseRule(ItemID.INFERNAL_AXE,
-            //      c -> c.getRealSkillLevel(net.runelite.api.Skill.WOODCUTTING) < 99)
-
 
     @Override
     protected void startUp()
@@ -1606,7 +1592,7 @@ public class BankOrganizerPlugin extends Plugin
             final var def = client.getItemDefinition(item.getId());
             if (def == null)
             {
-                continue; // Null safety
+                continue;
             }
 
             String name = def.getName().toLowerCase();
@@ -1630,7 +1616,6 @@ public class BankOrganizerPlugin extends Plugin
                 for (String pattern : entry.getValue())
                 {
                     boolean match;
-                    //Special logic only for cat7(tools)
                     if (catId == 7)
                     {
                         match = name.matches(".*\\b" + pattern + "s?\\b.*");
@@ -1647,8 +1632,6 @@ public class BankOrganizerPlugin extends Plugin
                     }
                 }
             }
-
-            // --- Special Items logic (quests, diaries, skills, etc.) ---
             if (config.specialItemsActive())
             {
                 SPECIAL_CASES.stream()

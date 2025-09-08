@@ -43,7 +43,6 @@ public interface BankOrganizerConfig extends Config
     )
     default String excludeCat1() { return "granite dust, granite cannonball, hunter spear tips, ornament kit, wilderness sword, oathplate shards, raw swordfish, swordfish, blue moon spear"; }
 
-    // ===== Category 2 =====
     @ConfigItem(
             position = 4,
             keyName = "cat2Active",
@@ -120,7 +119,7 @@ public interface BankOrganizerConfig extends Config
             name = "Excluded items",
             description = "Comma-separated list of item names to exclude from category"
     )
-    default String excludeCat4() { return "sapphire lantern, emerald lantern, diamond dragon bolts, dragonstone dragon bolts, emerald dragon bolts, jade dragon bolts, onyx dragon bolts, opal dragon bolts, pearl dragon bolts, ruby dragon bolts, sapphire dragon bolts, topaz dragon bolts, sapphite bolts, emerald bolts, ruby bolts, diamond bolts, dragonstone bolts, onyx bolts,  blighted super restore, ruby harvest, sapphire glacialis, zenyte shard, barrelchest anchor, bolts, barrows gloves, toadflax seed, super restore, (unf), toadflax, metal feather, black tourmaline core, lava battlestaff, iban's staff (u), mud battlestaff, steam battlestaff, smoke battlestaff, mist battlestaff, dust battlestaff, air battlestaff, water battlestaff, earth battlestaff, fire battlestaff, amethyst arrows, amethyst darts, amethyst javelins, runescroll of bloodbark, runescroll of swampbark, cannon barrels"; }
+    default String excludeCat4() { return "blighted super restore(1), blighted super restore(2), blighted super restore(3), blighted super restore(4), sapphire lantern, emerald lantern, diamond dragon bolts, dragonstone dragon bolts, emerald dragon bolts, jade dragon bolts, onyx dragon bolts, opal dragon bolts, pearl dragon bolts, ruby dragon bolts, sapphire dragon bolts, topaz dragon bolts, sapphite bolts, emerald bolts, ruby bolts, diamond bolts, dragonstone bolts, onyx bolts,  blighted super restore, ruby harvest, sapphire glacialis, zenyte shard, barrelchest anchor, bolts, barrows gloves, toadflax seed, super restore, (unf), toadflax, metal feather, black tourmaline core, lava battlestaff, iban's staff (u), mud battlestaff, steam battlestaff, smoke battlestaff, mist battlestaff, dust battlestaff, air battlestaff, water battlestaff, earth battlestaff, fire battlestaff, amethyst arrows, amethyst darts, amethyst javelins, runescroll of bloodbark, runescroll of swampbark, cannon barrels"; }
 
     @ConfigItem(
             position = 13,
@@ -204,7 +203,7 @@ public interface BankOrganizerConfig extends Config
     default String excludeCat7() { return "bronze knife, iron knife, steel knife, black knife, mithril knife, adamant knife, monkey talisman, xeric's talisman, reagent pouch, abyssal red dye, abyssal blue dye, abyssal green dye, dark dye, rune pouch, divine rune pouch, infernal cape, rune knife, nail beast nails, potato seed, battleaxe, wahammer, thrownaxe,potato cactus, potion, dragon warhammer, bucket of sand, metal feather, tuna potato, baked potato, dragon knife"; }
 
     @ConfigItem(
-            position = 25, // make sure this doesn't clash with other positions
+            position = 25,
             keyName = "cat8Active",
             name = "Food categorization",
             description = "Enable or disable 'food' categorization"
@@ -217,7 +216,7 @@ public interface BankOrganizerConfig extends Config
             name = "Color",
             description = "Box color for 'food' items"
     )
-    default Color colorCat8() { return new Color(128, 0, 128); } // example purple
+    default Color colorCat8() { return new Color(128, 0, 128); }
 
     @ConfigItem(
             position = 27,
@@ -228,7 +227,7 @@ public interface BankOrganizerConfig extends Config
     default String excludeCat8() { return "curry leaf, lobster pot, curry tree seed, strawberry seed, crawling hand, strawberries, strawberry, seed, leaf, spiked boots, shark lure, wine of zamorak, half full wine jug"; }
 
     @ConfigItem(
-            position = 31, // adjust so it doesn't conflict with existing positions
+            position = 31,
             keyName = "cat9Active",
             name = "Farming Categorization",
             description = "Enable or disable 'farming' categorization"
@@ -241,7 +240,7 @@ public interface BankOrganizerConfig extends Config
             name = "Color",
             description = "Box color for 'farming' items"
     )
-    default Color colorCat9() { return new Color(20, 100, 17); } // example gold
+    default Color colorCat9() { return new Color(20, 100, 17); }
 
     @ConfigItem(
             position = 33,
@@ -252,7 +251,7 @@ public interface BankOrganizerConfig extends Config
     default String excludeCat9() { return "banana hat, orange egg sac, diving apparatus, mithril grapple, mithril seeds, orange dye, apple pie, orange feather, cooked sweetcorn, baked potato, tuna potato, black mushroom, bowl, mushroom potato, mushroom & onion, sliced mushroom, fried mushroom, fossilised mushroom, uncooked mushroom pie, half a mushroom pie, mushroom pie, crystal tool seed, crystal armour seed, crystal weapon seed, enhanced crystal weapon seed, crystal acorn"; }
 
     @ConfigItem(
-            position = 34, // adjust so it doesn't conflict with existing positions
+            position = 34,
             keyName = "cat10Active",
             name = "Skilling Outfit Categorization",
             description = "Enable or disable Category 10 highlighting"
@@ -265,7 +264,7 @@ public interface BankOrganizerConfig extends Config
             name = "Color",
             description = "Color for 'skilling outfit' items"
     )
-    default Color colorCat10() { return new Color(0, 100, 100); } // example dark turquoise
+    default Color colorCat10() { return new Color(0, 100, 100); }
 
     @ConfigItem(
             position = 36,
@@ -275,7 +274,6 @@ public interface BankOrganizerConfig extends Config
     )
     default String excludeCat10() { return "anglerfish"; }
 
-    // ===== Special Case Items (Header/Section) =====
     @ConfigSection(
             name = "Special Case Items",
             description = "Items with rules based on quests, diaries, skills, or other conditions (Recommended with high QP/Cape)",

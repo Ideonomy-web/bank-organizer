@@ -94,6 +94,5 @@ public class    ItemCategories
                 "varrock armour", "western banner", "wilderness sword"));
     }
 }
-//Add exceptions more exceptions for "tools" Cat7 bucket of ...... pot of ........
 
-//multi-target items - consider: slayer helmet, boots of aranae, void, barrows gloves, anti-dragon shield
+//multi-target items - consider: slayer helmet, aranea boots, void, barrows gloves, anti-dragon shield
