@@ -6,7 +6,6 @@ import java.awt.Color;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
 import net.runelite.api.InventoryID;
 import net.runelite.api.Item;
@@ -21,7 +20,6 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 
-@Slf4j
 @PluginDescriptor(
         name = "Bank Organizer",
         description = "Allows for easy bank organization into categories with custom colors and exclusions"
@@ -29,6 +27,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 
 public class BankOrganizerPlugin extends Plugin
 {
+
     @Inject
     private Client client;
 
