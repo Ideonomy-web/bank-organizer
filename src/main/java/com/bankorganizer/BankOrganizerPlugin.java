@@ -1608,7 +1608,16 @@ public class BankOrganizerPlugin extends Plugin
                 }
 
                 List<String> exclusions = getExclusionsForCategory(catId);
-                if (exclusions.contains(name))
+                boolean excluded = false;
+                for (String ex : exclusions)
+                {
+                    if (!ex.isEmpty() && name.contains(ex))
+                    {
+                        excluded = true;
+                        break;
+                    }
+                }
+                if (excluded)
                 {
                     continue;
                 }
@@ -1652,6 +1661,20 @@ public class BankOrganizerPlugin extends Plugin
 
     private List<String> getExclusionsForCategory(int catId)
     {
+        List<String> list = new ArrayList<>();
+
+        // Hhidden defaults from ItemCategories
+        List<String> base = ItemCategories.CATEGORY_DEFAULT_EXCLUSIONS
+                .getOrDefault(catId, Collections.emptyList());
+        for (String token : base)
+        {
+            if (token != null && !token.trim().isEmpty())
+            {
+                list.add(token.trim().toLowerCase());
+            }
+        }
+
+        // User config
         String raw;
         switch (catId)
         {
@@ -1665,19 +1688,24 @@ public class BankOrganizerPlugin extends Plugin
             case 8: raw = config.excludeCat8(); break;
             case 9: raw = config.excludeCat9(); break;
             case 10: raw = config.excludeCat10(); break;
-            default: return Collections.emptyList();
+            // case 11: raw = config.excludeCat11(); break;
+            default: raw = null; break;
         }
 
-        if (raw == null || raw.trim().isEmpty())
+        if (raw != null && !raw.trim().isEmpty())
         {
-            return Collections.emptyList();
+            for (String token : raw.split(","))
+            {
+                if (token != null && !token.trim().isEmpty())
+                {
+                    list.add(token.trim().toLowerCase());
+                }
+            }
         }
 
-        return Arrays.stream(raw.split(","))
-                .map(String::trim)
-                .map(String::toLowerCase)
-                .collect(Collectors.toList());
+        return list;
     }
+
 
     private Color getColorForCategory(int catId)
     {
@@ -1693,6 +1721,7 @@ public class BankOrganizerPlugin extends Plugin
             case 8: return config.colorCat8();
             case 9: return config.colorCat9();
             case 10: return config.colorCat10();
+            //case 11: return config.colorCat11();
             default: return Color.WHITE;
         }
     }
@@ -1711,6 +1740,7 @@ public class BankOrganizerPlugin extends Plugin
             case 8: return config.cat8Active();
             case 9: return config.cat9Active();
             case 10: return config.cat10Active();
+            //case 11: return config.cat11Active();
             default: return false;
         }
     }

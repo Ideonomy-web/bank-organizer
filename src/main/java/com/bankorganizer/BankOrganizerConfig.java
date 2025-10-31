@@ -41,7 +41,9 @@ public interface BankOrganizerConfig extends Config
             name = "Excluded items",
             description = "Comma-separated list of item names to exclude from category"
     )
-    default String excludeCat1() { return "granite dust, granite cannonball, hunter spear tips, ornament kit, wilderness sword, oathplate shards, raw swordfish, swordfish, blue moon spear"; }
+    //default String excludeCat1() { return "granite dust, granite cannonball, hunter spear tips, wilderness sword, oathplate shards, raw swordfish, swordfish, blue moon spear, godsword shard, godsword blade, defender ornament kit, godsword ornament kit"; }
+    default String excludeCat1() { return ""; }
+
 
     @ConfigItem(
             position = 4,
@@ -65,7 +67,8 @@ public interface BankOrganizerConfig extends Config
             name = "Excluded items",
             description = "Comma-separated list of item names to exclude from category"
     )
-    default String excludeCat2() { return "noose wand, hard hat, doctor's hat, enchanted symbol, banana hat, hat of the eye, elemental staff crown, runescroll of, mystic cards, chef's hat, santa hat, party hat, bobble hat, jester hat, tri-jester hat, woolly hat, battletsaff"; }
+    //default String excludeCat2() { return "noose wand, hard hat, doctor's hat, enchanted symbol, banana hat, hat of the eye, elemental staff crown, runescroll of, mystic cards, battletsaff"; }
+    default String excludeCat2() { return ""; }
 
     @ConfigItem(
             position = 7,
@@ -92,7 +95,8 @@ public interface BankOrganizerConfig extends Config
             name = "Excluded items",
             description = "Comma-separated list of item names to exclude from category"
     )
-    default String excludeCat3() { return "bowl, (unf), mixed hide base, crossbow string, fishbowl and net, blessed gold bowl, venator shard, snakeskin, (u), mixed hide cape, bronze arrowtips, iron arrowtips, steel arrowtips, mithril arrowtips, broad arrowheads, adamant arrowtips, rune arrowtips, amethyst arrowtips, dragon arrowtips"; }
+    //default String excludeCat3() { return "bowl, bowl wig, (unf), mixed hide base, crossbow string, fishbowl and net, blessed gold bowl, venator shard, snakeskin, (u), mixed hide cape, bronze arrowtips, iron arrowtips, steel arrowtips, mithril arrowtips, broad arrowheads, adamant arrowtips, rune arrowtips, amethyst arrowtips, dragon arrowtips, fishbowl helmet, amethyst javelin heads, rune javelin heads, dragon javelin heads, barrows teleport, (u), ballista limbs, ballista spring"; }
+    default String excludeCat3() { return ""; }
 
     @ConfigItem(
             position = 10,
@@ -119,7 +123,8 @@ public interface BankOrganizerConfig extends Config
             name = "Excluded items",
             description = "Comma-separated list of item names to exclude from category"
     )
-    default String excludeCat4() { return "blighted super restore(1), blighted super restore(2), blighted super restore(3), blighted super restore(4), sapphire lantern, emerald lantern, diamond dragon bolts, dragonstone dragon bolts, emerald dragon bolts, jade dragon bolts, onyx dragon bolts, opal dragon bolts, pearl dragon bolts, ruby dragon bolts, sapphire dragon bolts, topaz dragon bolts, sapphite bolts, emerald bolts, ruby bolts, diamond bolts, dragonstone bolts, onyx bolts,  blighted super restore, ruby harvest, sapphire glacialis, zenyte shard, barrelchest anchor, bolts, barrows gloves, toadflax seed, super restore, (unf), toadflax, metal feather, black tourmaline core, lava battlestaff, iban's staff (u), mud battlestaff, steam battlestaff, smoke battlestaff, mist battlestaff, dust battlestaff, air battlestaff, water battlestaff, earth battlestaff, fire battlestaff, amethyst arrows, amethyst darts, amethyst javelins, runescroll of bloodbark, runescroll of swampbark, cannon barrels"; }
+    //default String excludeCat4() { return "blighted super restore(1), blighted super restore(2), blighted super restore(3), blighted super restore(4), sapphire lantern, emerald lantern, diamond dragon bolts, dragonstone dragon bolts, emerald dragon bolts, jade dragon bolts, onyx dragon bolts, opal dragon bolts, pearl dragon bolts, ruby dragon bolts, sapphire dragon bolts, topaz dragon bolts, sapphite bolts, emerald bolts, ruby bolts, diamond bolts, dragonstone bolts, onyx bolts,  blighted super restore, ruby harvest, sapphire glacialis, zenyte shard, barrelchest anchor, bolts, barrows gloves, toadflax seed, super restore, (unf), toadflax, metal feather, black tourmaline core, lava battlestaff, iban's staff (u), mud battlestaff, steam battlestaff, smoke battlestaff, mist battlestaff, dust battlestaff, air battlestaff, water battlestaff, earth battlestaff, fire battlestaff, amethyst arrows, amethyst darts, amethyst javelins, runescroll of bloodbark, runescroll of swampbark, cannon barrels, cannon barrels (or), fish barrel, splitbark gauntlets, splitbark legs, splitbark boots, splitbark helm, splitbark body, barrows teleport, barrel of demonic tallow, machete"; }
+    default String excludeCat4() { return ""; }
 
     @ConfigItem(
             position = 13,
@@ -146,7 +151,8 @@ public interface BankOrganizerConfig extends Config
             name = "Excluded items",
             description = "Comma-separated list of item names to exclude from category"
     )
-    default String excludeCat5() { return "snape grass seed, guam seed, marrentill seed, tarromin seed, harralander seed, ranarr seed, toadflax seed, irit seed, avantoe seed, kwuarm seed, snapdragon seed, huasca seed, cadantine seed, lantadyme seed, dwarf weed seed, torstol seed, superior dragon bones, spirit flakes, guam seed, marrentill seed, tarromin seed, harralander seed, ranarr seed, toadflax seed, irit seed, avantoe seed, kwuarm seed, huasca seed, snapdragon seed, cadantine seed, lantadyme seed, dwarf weed seed, torstol seed"; }
+    //default String excludeCat5() { return "snape grass seed, guam seed, marrentill seed, tarromin seed, harralander seed, ranarr seed, toadflax seed, irit seed, avantoe seed, kwuarm seed, snapdragon seed, huasca seed, cadantine seed, lantadyme seed, dwarf weed seed, torstol seed, superior dragon bones, spirit flakes, guam seed, marrentill seed, tarromin seed, harralander seed, ranarr seed, toadflax seed, irit seed, avantoe seed, kwuarm seed, huasca seed, snapdragon seed, cadantine seed, lantadyme seed, dwarf weed seed, torstol seed"; }
+    default String excludeCat5() { return ""; }
 
     @ConfigItem(
             position = 16,
@@ -173,7 +179,8 @@ public interface BankOrganizerConfig extends Config
             name = "Excluded items",
             description = "Comma-separated list of item names to exclude from category"
     )
-    default String excludeCat6() { return "10th squad sigil, bonecrusher, hallowed crystal shard, bones to peaches"; }
+    //default String excludeCat6() { return "10th squad sigil, bonecrusher, hallowed crystal shard, bones to peaches, bone dagger"; }
+    default String excludeCat6() { return ""; }
 
     @ConfigItem(
             position = 19,
@@ -200,7 +207,8 @@ public interface BankOrganizerConfig extends Config
             name = "Excluded items",
             description = "Comma-separated list of item names to exclude from category"
     )
-    default String excludeCat7() { return "bronze knife, iron knife, steel knife, black knife, mithril knife, adamant knife, monkey talisman, xeric's talisman, reagent pouch, abyssal red dye, abyssal blue dye, abyssal green dye, dark dye, rune pouch, divine rune pouch, infernal cape, rune knife, nail beast nails, potato seed, battleaxe, wahammer, thrownaxe,potato cactus, potion, dragon warhammer, bucket of sand, metal feather, tuna potato, baked potato, dragon knife"; }
+    //default String excludeCat7() { return "bowl wig, bronze knife, iron knife, steel knife, black knife, mithril knife, adamant knife, rune knife, monkey talisman, xeric's talisman, reagent pouch, abyssal red dye, abyssal blue dye, abyssal green dye, dark dye, rune pouch, divine rune pouch, infernal cape, rune knife, nail beast nails, potato seed, battleaxe, wahammer, thrownaxe,potato cactus, potion, dragon warhammer, bucket of sand, metal feather, tuna potato, baked potato, dragon knife, thread of elidinis, torag's hammers, granite hammer"; }
+    default String excludeCat7() { return ""; }
 
     @ConfigItem(
             position = 25,
@@ -224,7 +232,8 @@ public interface BankOrganizerConfig extends Config
             name = "Excluded items",
             description = "Comma-separated list of item names to exclude from category"
     )
-    default String excludeCat8() { return "curry leaf, lobster pot, curry tree seed, strawberry seed, crawling hand, strawberries, strawberry, seed, leaf, spiked boots, shark lure, wine of zamorak, half full wine jug"; }
+    //efault String excludeCat8() { return "curry leaf, lobster pot, curry tree seed, strawberry seed, crawling hand, strawberries, strawberry, seed, leaf, spiked boots, shark lure, wine of zamorak, half full wine jug, big shark, big bass, big swordfish, big harpoonfish"; }
+    default String excludeCat8() { return ""; }
 
     @ConfigItem(
             position = 31,
@@ -248,7 +257,8 @@ public interface BankOrganizerConfig extends Config
             name = "Excluded items",
             description = "Comma-separated list of item names to exclude from category"
     )
-    default String excludeCat9() { return "banana hat, orange egg sac, diving apparatus, mithril grapple, mithril seeds, orange dye, apple pie, orange feather, cooked sweetcorn, baked potato, tuna potato, black mushroom, bowl, mushroom potato, mushroom & onion, sliced mushroom, fried mushroom, fossilised mushroom, uncooked mushroom pie, half a mushroom pie, mushroom pie, crystal tool seed, crystal armour seed, crystal weapon seed, enhanced crystal weapon seed, crystal acorn"; }
+    //default String excludeCat9() { return "banana hat, orange egg sac, diving apparatus, mithril grapple, mithril seeds, orange dye, apple pie, orange feather, cooked sweetcorn, baked potato, tuna potato, black mushroom, bowl, mushroom potato, mushroom & onion, sliced mushroom, fried mushroom, fossilised mushroom, uncooked mushroom pie, half a mushroom pie, mushroom pie, crystal tool seed, crystal armour seed, crystal weapon seed, enhanced crystal weapon seed, egg potato, seed pod, pineapple pizza, mith grapple, cursed banana, hallowed grapple"; }
+    default String excludeCat9() { return ""; }
 
     @ConfigItem(
             position = 34,
@@ -264,7 +274,7 @@ public interface BankOrganizerConfig extends Config
             name = "Color",
             description = "Color for 'skilling outfit' items"
     )
-    default Color colorCat10() { return new Color(0, 100, 100); }
+    default Color colorCat10() { return new Color(150, 75, 0); }
 
     @ConfigItem(
             position = 36,
@@ -272,7 +282,34 @@ public interface BankOrganizerConfig extends Config
             name = "Excluded items",
             description = "Comma-separated list of item names to exclude from category"
     )
-    default String excludeCat10() { return "anglerfish"; }
+    //default String excludeCat10() { return "anglerfish, raw anglerfish"; }
+    default String excludeCat10() { return ""; }
+
+    /*
+    @ConfigItem(
+            position = 37,
+            keyName = "cat11Active",
+            name = "Sailing Categorization",
+            description = "Enable or disable categorization for Sailing"
+    )
+    default boolean cat11Active() { return false; }
+
+    @ConfigItem(
+            position = 38,
+            keyName = "colorCat11",
+            name = "Color",
+            description = "Box color for 'sailing' items"
+    )
+    default Color colorCat11() { return new Color(0, 100, 100); }
+
+    @ConfigItem(
+            position = 39,
+            keyName = "excludeCat11",
+            name = "Excluded items",
+            description = "Comma-separated list of item names to exclude from category"
+    )
+    default String excludeCat11() { return "achey logs, willow logs, maple logs, arctic pine logs, yew logs, magic logs"; }
+     */
 
     @ConfigSection(
             name = "Special Case Items",
