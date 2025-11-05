@@ -67,9 +67,27 @@ public class BankOrganizerPlugin extends Plugin
             ),
             new SpecialCaseRule(
                     ItemID.OGRE_BELLOWS,
-                    c -> Quest.RECIPE_FOR_DISASTER.getState(c) !=QuestState.FINISHED
-                    && Quest.MOURNINGS_END_PART_I.getState(c) !=QuestState.FINISHED
-                    && c.getVarpValue(Varbits.DIARY_WESTERN_ELITE) !=1
+                    c -> Quest.RECIPE_FOR_DISASTER.getState(c) != QuestState.FINISHED
+                            || Quest.MOURNINGS_END_PART_I.getState(c) != QuestState.FINISHED
+                            || c.getVarpValue(Varbits.DIARY_WESTERN_ELITE) != 1
+            ),
+            new SpecialCaseRule(
+                    ItemID.OGRE_BELLOWS_1,
+                    c -> Quest.RECIPE_FOR_DISASTER.getState(c) != QuestState.FINISHED
+                            || Quest.MOURNINGS_END_PART_I.getState(c) != QuestState.FINISHED
+                            || c.getVarpValue(Varbits.DIARY_WESTERN_ELITE) != 1
+            ),
+            new SpecialCaseRule(
+                    ItemID.OGRE_BELLOWS_2,
+                    c -> Quest.RECIPE_FOR_DISASTER.getState(c) != QuestState.FINISHED
+                            || Quest.MOURNINGS_END_PART_I.getState(c) != QuestState.FINISHED
+                            || c.getVarpValue(Varbits.DIARY_WESTERN_ELITE) != 1
+            ),
+            new SpecialCaseRule(
+                    ItemID.OGRE_BELLOWS_3,
+                    c -> Quest.RECIPE_FOR_DISASTER.getState(c) != QuestState.FINISHED
+                            || Quest.MOURNINGS_END_PART_I.getState(c) != QuestState.FINISHED
+                            || c.getVarpValue(Varbits.DIARY_WESTERN_ELITE) != 1
             ),
             new SpecialCaseRule(
                     ItemID.TROWEL,
@@ -195,7 +213,7 @@ public class BankOrganizerPlugin extends Plugin
             new SpecialCaseRule(
                     ItemID.SEAL_OF_PASSAGE,
                     c -> Quest.DREAM_MENTOR.getState(c) != QuestState.FINISHED
-                    && c.getVarbitValue(Varbits.DIARY_FREMENNIK_ELITE) !=1
+                            || c.getVarbitValue(Varbits.DIARY_FREMENNIK_ELITE) != 1
             ),
             new SpecialCaseRule(
                     ItemID.ANIMATE_ROCK_SCROLL,
@@ -1554,8 +1572,15 @@ public class BankOrganizerPlugin extends Plugin
             new SpecialCaseRule(
                     ItemID.OLD_NOTE,
                     c -> Quest.SINS_OF_THE_FATHER.getState(c) !=QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.RING_OF_VISIBILITY,
+                    c -> Quest.DESERT_TREASURE_II__THE_FALLEN_EMPIRE.getState(c) != QuestState.FINISHED
+            ),
+            new SpecialCaseRule(
+                    ItemID.PROBOSCIS,
+                    c -> false
             )
-
     );
 
     @Override
@@ -1597,11 +1622,29 @@ public class BankOrganizerPlugin extends Plugin
             String name = def.getName().toLowerCase();
             List<Color> matchedColors = new ArrayList<>();
 
+            // --- Handle ID-based category 11 (SAILING ITEMS) separately ---
+            if (isCategoryActive(11))
+            {
+                List<Integer> idList = ItemCategories.CATEGORY_ID_PATTERNS
+                        .getOrDefault(11, Collections.emptyList());
+
+                if (idList.contains(item.getId()))
+                {
+                    matchedColors.add(getColorForCategory(11));
+                }
+            }
+
             for (Map.Entry<Integer, List<String>> entry : ItemCategories.CATEGORY_PATTERNS.entrySet())
             {
                 int catId = entry.getKey();
 
                 if (!isCategoryActive(catId))
+                {
+                    continue;
+                }
+
+                // Exclude raw Snakeskin materials
+                if (catId == 3 && name.equals("snakeskin"))
                 {
                     continue;
                 }
@@ -1687,7 +1730,7 @@ public class BankOrganizerPlugin extends Plugin
             case 8: raw = config.excludeCat8(); break;
             case 9: raw = config.excludeCat9(); break;
             case 10: raw = config.excludeCat10(); break;
-            // case 11: raw = config.excludeCat11(); break;
+            case 11: raw = config.excludeCat11(); break;
             default: raw = null; break;
         }
 
@@ -1720,7 +1763,7 @@ public class BankOrganizerPlugin extends Plugin
             case 8: return config.colorCat8();
             case 9: return config.colorCat9();
             case 10: return config.colorCat10();
-            //case 11: return config.colorCat11();
+            case 11: return config.colorCat11();
             default: return Color.WHITE;
         }
     }
@@ -1739,7 +1782,7 @@ public class BankOrganizerPlugin extends Plugin
             case 8: return config.cat8Active();
             case 9: return config.cat9Active();
             case 10: return config.cat10Active();
-            //case 11: return config.cat11Active();
+            case 11: return config.cat11Active();
             default: return false;
         }
     }

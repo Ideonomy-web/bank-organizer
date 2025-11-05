@@ -20,6 +20,9 @@ The <strong>Bank Organizer & Clean‑up</strong> plugin helps you keep your Rune
   <li>Each category comes pre-populated with certain exclusions in order to prevent too much overlap and random mis-fires on associated string names, this list is not exclusive and is guaranteed to miss certain case - add your own exclusions by simply inputting them in the "excluded items" box (lowercase) and comma-separated.</li>
 </ul>
 
+<h3>Changelog:</h3>
+<li>Version 1.1: Bugfixes, changes to exclusion logic, hidden exclusions, and preparations for sailing (v.1.2)</li>
+<li>Version 1.2: Big Sailing category added to prepare for all-things related to sailing. The new category will include essentially everything related to sailing from materials and tools required, as well as anything that may be obtained from sailing in one overall category.</li>
 <p>
 
 </p>
